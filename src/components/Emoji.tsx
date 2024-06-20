@@ -17,7 +17,7 @@ const Emoji = ({rating}: Props) => {
     }
   
   return (
-    <Image {...emojiMap[rating]} />
+    <Image {...emojiMap[rating]} marginTop={1} />
   )
 }
 
