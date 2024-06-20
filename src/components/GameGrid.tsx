@@ -7,7 +7,6 @@ import useGames from "../hooks/useGames";
 
 interface Props {
   gameQuery: GameQuery;
- 
 }
 
 const GameGrid = ({ gameQuery }: Props) => {
@@ -17,27 +16,26 @@ const GameGrid = ({ gameQuery }: Props) => {
     22, 23, 24, 25, 26, 27, 28, 29, 30,
   ];
 
+  if (error) return <Text>{error}</Text>;
+
   return (
-    <div>
-      {error && <Text>{error}</Text>}
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        padding="10px"
-        spacing={6}
-      >
-        {isLoading &&
-          Skeletons.map((skeleton) => (
-            <GameCardContainer key={skeleton}>
-              <GameCardSkeleton />
-            </GameCardContainer>
-          ))}
-        {data.map((game) => (
-          <GameCardContainer key={game.id}>
-            <GameCards game={game} />
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+      padding="10px"
+      spacing={6}
+    >
+      {isLoading &&
+        Skeletons.map((skeleton) => (
+          <GameCardContainer key={skeleton}>
+            <GameCardSkeleton />
           </GameCardContainer>
         ))}
-      </SimpleGrid>
-    </div>
+      {data.map((game) => (
+        <GameCardContainer key={game.id}>
+          <GameCards game={game} />
+        </GameCardContainer>
+      ))}
+    </SimpleGrid>
   );
 };
 
